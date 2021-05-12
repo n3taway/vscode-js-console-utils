@@ -1,8 +1,9 @@
 {
-    "name": "vscode-js-console-utils",
+    "name": "vscode-js-console-utils-private",
     "displayName": "javascript console utils",
     "description": "Help insert and remove console.(*) statements",
     "version": "0.7.0",
+    "icon": "log_icon.png",
     "publisher": "whtouche",
     "repository": "https://github.com/whtouche/vscode-js-console-utils",
     "engines": {
@@ -13,6 +14,7 @@
     ],
     "activationEvents": [
         "onCommand:extension.insertLogStatement",
+        "onCommand:extension.insertLogStatementJsonStringify",
         "onCommand:extension.deleteAllLogStatements"
     ],
     "main": "./extension",
@@ -21,6 +23,10 @@
             {
                 "command": "extension.insertLogStatement",
                 "title": "Insert Log Statement"
+            },
+            {
+                "command": "extension.insertLogStatementJsonStringify",
+                "title": "Insert Log 将目标对象JSON序列化"
             },
             {
                 "command": "extension.deleteAllLogStatements",
@@ -35,6 +41,12 @@
                 "when": "editorTextFocus"
             },
             {
+                "command": "extension.insertLogStatementJsonStringify",
+                "key": "shift+ctrl+v",
+                "mac": "shift+cmd+v",
+                "when": "editorTextFocus"
+            },
+            {
                 "command": "extension.deleteAllLogStatements",
                 "key": "shift+ctrl+d",
                 "mac": "shift+cmd+d"
@@ -42,15 +54,16 @@
         ]
     },
     "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "eslint": "^3.6.0",
+        "@types/micromatch": "^3.1.0",
+        "@types/mocha": "^2.2.32",
         "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+        "@types/vscode": "^1.5.0",
+        "eslint": "^3.6.0",
+        "mocha": "^6.1.4",
+        "tslint": "^5.5.0",
+        "typescript": "^2.0.3"
     }
 }

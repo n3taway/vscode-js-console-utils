@@ -1,8 +1,8 @@
 {
-    "name": "vscode-js-console-utils-private",
-    "displayName": "javascript console utils",
+    "name": "vscode-console-utils-private",
+    "displayName": "console utils",
     "description": "Help insert and remove console.(*) statements",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "icon": "log_icon.png",
     "publisher": "whtouche",
     "repository": "https://github.com/whtouche/vscode-js-console-utils",

@@ -1,5 +1,20 @@
 const vscode = require('vscode');
 
+const getFileSuffix = (fileName) => fileName.split(".").pop();
+
+const jsLog = (text) => `console.log('${text}: ', ${text});`;
+
+const dartLog = (text) => `print('${text}: ` + "${" + text + "}');";
+
+const langLog = {
+  js: jsLog,
+  jsx: jsLog,
+  ts: jsLog,
+  tsx: jsLog,
+  vue: jsLog,
+  dart: dartLog,
+};
+  
 const insertText = (val) => {
     const editor = vscode.window.activeTextEditor;
 
@@ -55,11 +70,11 @@ function activate(context) {
 
         const selection = editor.selection;
         const text = editor.document.getText(selection);
-
+        const fileSuffix = getFileSuffix(editor.document.fileName);
         text
             ? vscode.commands.executeCommand('editor.action.insertLineAfter')
                 .then(() => {
-                    const logToInsert = `console.log('${text}: ', ${text});`;
+                    const logToInsert = langLog[fileSuffix] ? langLog[fileSuffix](text) : 'console.log();';
                     insertText(logToInsert);
                 })
             : insertText('console.log();');

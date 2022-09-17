@@ -1,9 +1,9 @@
 const vscode = require('vscode');
 const path = require('path');
 
-const jsLog = ({ text, fileName, line }) => `console.log('🚧 -> file: ${fileName} ~ line: ${line}。 ${text}: ', ${text});`;
+const jsLog = ({ text, fileName }) => `console.log('🚧 -> file: ${fileName}。 ${text}: ', ${text});`;
 
-const dartLog = ({ text, fileName, line }) => `print('🚧 -> file: ${fileName} ~ line: ${line}。 ${text}: ` + "${" + text + "}');";
+const dartLog = ({ text, fileName }) => `print('🚧 -> file: ${fileName}。 ${text}: ` + "${" + text + "}');";
 
 const tempFileLog = ({ text }) => `console.log('🚧 -> ${text}: ', ${text});`;
 
@@ -76,7 +76,7 @@ function activate(context) {
         text
             ? vscode.commands.executeCommand('editor.action.insertLineAfter')
                 .then(() => {
-                    const opt = { text, fileName: base, line: editor.selection.active.line + 1 }
+                    const opt = { text, fileName: base }
                     const logFn = langLog[ext];
                     const logToInsert = logFn ? logFn(opt) : 'console.log();';
                     insertText(logToInsert);

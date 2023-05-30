@@ -32,6 +32,6 @@ To remove console.logs:
 ## License
 [MIT License](LICENSE)
 
-## Build vsix 
+## 打包构建 Build vsix
 - npm install -g vsce
 - vsce package
